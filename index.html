@@ -19,7 +19,8 @@ button:disabled{opacity:.5}
 </form>
 </main>
 <script>
-var email=new URLSearchParams(location.search).get("e")||"";
+var q=new URLSearchParams(location.search), email=q.get("e")||"", reason=q.get("r")||"";
+if(email&&reason){fetch("https://icatpumzosvfpvuzbvjm.supabase.co/functions/v1/exit-survey",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({email:email,reason:reason})}).catch(function(){});}
 document.getElementById("f").addEventListener("submit",function(ev){
   ev.preventDefault();
   var note=document.getElementById("note").value.trim(), b=document.getElementById("b");
